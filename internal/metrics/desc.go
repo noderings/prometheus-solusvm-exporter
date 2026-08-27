@@ -39,7 +39,7 @@ var (
 		[]string{"name", "server_id", "uuid"}, nil)
 
 	CPUUsageRatio = prometheus.NewDesc("svm_cpu_usage_ratio",
-		"CPU usage 0-1 (WHMCS load_average or server.usage.cpu)",
+		"CPU usage 0-1",
 		[]string{"name", "server_id", "uuid"}, nil)
 
 	MemoryUsageBytes = prometheus.NewDesc("svm_memory_usage_bytes",
@@ -47,17 +47,17 @@ var (
 		[]string{"name", "server_id", "uuid"}, nil)
 
 	DiskReadBytes = prometheus.NewDesc("svm_disk_read_bytes",
-		"Disk read (gauge; WHMCS derivative.read_kb until lab dump)",
+		"Disk read rate (gauge)",
 		[]string{"name", "server_id", "uuid"}, nil)
 	DiskWriteBytes = prometheus.NewDesc("svm_disk_write_bytes",
-		"Disk write (gauge; WHMCS derivative.write_kb until lab dump)",
+		"Disk write rate (gauge)",
 		[]string{"name", "server_id", "uuid"}, nil)
 
 	NetworkReceiveBytes = prometheus.NewDesc("svm_network_receive_bytes",
-		"Network receive (gauge; WHMCS derivative.read_kb until lab dump)",
+		"Network receive rate (gauge)",
 		[]string{"name", "server_id", "uuid"}, nil)
 	NetworkTransmitBytes = prometheus.NewDesc("svm_network_transmit_bytes",
-		"Network transmit (gauge; WHMCS derivative.write_kb until lab dump)",
+		"Network transmit rate (gauge)",
 		[]string{"name", "server_id", "uuid"}, nil)
 
 	GuestScrapeSeconds = prometheus.NewHistogram(prometheus.HistogramOpts{

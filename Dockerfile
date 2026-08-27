@@ -41,7 +41,4 @@ EXPOSE 9179
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
     CMD wget --no-verbose --tries=1 --spider http://localhost:9179/healthz || exit 1
 
-# ENTRYPOINT (not CMD): Kubernetes container.args replace Docker CMD. The Helm
-# chart passes --listen/--only-name-prefix/--insecure-skip-tls as args; with
-# only CMD those flags become the executable and the pod CrashLoopBackOffs.
 ENTRYPOINT ["/app/prometheus-solusvm-exporter"]

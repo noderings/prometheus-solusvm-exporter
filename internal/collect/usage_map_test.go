@@ -76,7 +76,7 @@ func TestMapUsage_NetworkDiskGauges(t *testing.T) {
 	for _, f := range net {
 		got[f.GetName()] = familyValue(f)
 		if f.GetType() != dto.MetricType_GAUGE {
-			t.Fatalf("%s must be a gauge until lab dump", f.GetName())
+			t.Fatalf("%s must be a gauge, got %v", f.GetName(), f.GetType())
 		}
 	}
 	if got["svm_network_receive_bytes"] != 10.5 || got["svm_network_transmit_bytes"] != 20.1 {

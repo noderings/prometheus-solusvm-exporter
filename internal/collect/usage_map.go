@@ -146,8 +146,8 @@ func derivativePair(m map[string]any) (read, write float64, ok bool) {
 	return r, w, rok || wok
 }
 
-// MapUsage maps a WHMCS-shaped SolusVM usage payload to Prometheus families.
-// Empty items (no qemu-guest-agent) yield no metrics and no error.
+// MapUsage maps a SolusVM usage payload to Prometheus families.
+// Empty items yield no metrics and no error.
 func MapUsage(kind string, raw json.RawMessage, name, serverID, uuid string) ([]*dto.MetricFamily, error) {
 	items := extractItems(raw)
 	if len(items) == 0 {

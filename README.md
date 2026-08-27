@@ -6,17 +6,15 @@ SolusVM 1 (`:5656`, `/api/admin`) is not supported.
 
 ## Architecture
 
-Background workers refresh an in-memory snapshot. The `/metrics` handler **never** calls the SolusVM API — it only serialises the cached snapshot.
+Background workers refresh an in-memory snapshot. `/metrics` only serialises that cache.
 
 | Worker | Default interval | SVM endpoint |
 |--------|-----------------|--------------|
-| inventory | 30 s | `GET /account`, paginated `GET /compute_resources`, paginated `GET /servers`. Emits `svm_server_info` for `NR-` names only. |
-| capacity | 60 s | Compute-resource `settings.limits` (vcpu / ram / hdd used vs total). |
-| guest | 45 s | `GET /usage/cpu\|memory\|network\|disks/{uuid}` for **running NR-** servers (skipped if last inventory failed). Empty `items` (no qemu-guest-agent) are tolerated. `GET /servers/{id}` `usage.cpu` is a fallback. |
+| inventory | 30 s | `GET /account`, `GET /compute_resources`, `GET /servers`. `svm_server_info` is NR- names only. |
+| capacity | 60 s | Compute-resource `settings.limits` (vcpu / ram / hdd). |
+| guest | 45 s | `GET /usage/{cpu,memory,network,disks}/{uuid}` for running NR- servers. |
 
-Guest workers scrape **only** servers whose name starts with `NR-` (case-insensitive) **and** look started. `svm_server_info` is also NR-only.
-
-Network/disk WHMCS `derivative.read_kb` / `write_kb` are rates; they are emitted as **gauges** until a lab dump confirms counters.
+Guest scrape is NR- prefix and started status only.
 
 ## Usage
 
@@ -56,7 +54,7 @@ prometheus-solusvm-exporter
 | `--guest-concurrency` | | `8` | Max concurrent usage requests |
 | `--guest-timeout` | | `25s` | Per-guest usage timeout |
 | `--only-name-prefix` | | `NR-` | Only emit guest series for names with this prefix (case-insensitive) |
-| `--insecure-skip-tls` | | `false` | Skip TLS verification (lab only) |
+| `--insecure-skip-tls` | | `false` | Skip TLS verification |
 
 ## Testing
 

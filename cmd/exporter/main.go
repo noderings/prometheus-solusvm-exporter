@@ -34,7 +34,7 @@ func main() {
 		guestConcurrency = flag.Int("guest-concurrency", 8, "max concurrent usage requests")
 		guestTimeout     = flag.Duration("guest-timeout", 25*time.Second, "per-guest usage timeout")
 		onlyNamePrefix   = flag.String("only-name-prefix", "NR-", "only scrape servers with this name prefix")
-		insecureSkipTLS  = flag.Bool("insecure-skip-tls", false, "skip TLS verification (lab only)")
+		insecureSkipTLS  = flag.Bool("insecure-skip-tls", false, "skip TLS verification")
 	)
 	flag.Parse()
 
