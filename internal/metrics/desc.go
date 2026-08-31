@@ -13,21 +13,21 @@ var (
 		"vCPU allocated on this compute resource",
 		[]string{"compute_resource_id"}, nil)
 	CPUMax = prometheus.NewDesc("svm_cpu_max",
-		"Max vCPU on this compute resource",
+		"Max vCPU on this compute resource (+Inf when SolusVM limit is unlimited)",
 		[]string{"compute_resource_id"}, nil)
 
 	MemoryAllocatedBytes = prometheus.NewDesc("svm_memory_allocated_bytes",
 		"Memory allocated on this compute resource (bytes)",
 		[]string{"compute_resource_id"}, nil)
 	MemoryMaxBytes = prometheus.NewDesc("svm_memory_max_bytes",
-		"Max memory on this compute resource (bytes)",
+		"Max memory on this compute resource (bytes; +Inf when unlimited)",
 		[]string{"compute_resource_id"}, nil)
 
 	DiskAllocatedBytes = prometheus.NewDesc("svm_disk_allocated_bytes",
 		"Disk allocated on this compute resource (bytes)",
 		[]string{"compute_resource_id"}, nil)
 	DiskMaxBytes = prometheus.NewDesc("svm_disk_max_bytes",
-		"Max disk on this compute resource (bytes)",
+		"Max disk on this compute resource (bytes; +Inf when unlimited)",
 		[]string{"compute_resource_id"}, nil)
 
 	ServerInfo = prometheus.NewDesc("svm_server_info",
