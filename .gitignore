@@ -1,0 +1,6 @@
+prometheus-solusvm-exporter
+dist/
+build/
+*.exe
+*.test
+*.out
